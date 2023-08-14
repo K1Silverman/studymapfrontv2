@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply mb-4 text-4xl font-extrabold leading-none tracking-tight text-indigo-950 md:text-5xl lg:text-6xl dark:text-white;
+  }
+
+  h2 {
+    @apply text-4xl text-indigo-950 font-extrabold dark:text-white
+  }
+  
+  p, label {
+    @apply text-xl font-bold mb-3 text-indigo-950 dark:text-gray-400
+  }
+}

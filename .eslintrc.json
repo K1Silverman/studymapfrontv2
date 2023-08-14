@@ -1,26 +1,16 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
+    "root": true,
+    "parser": "vue-eslint-parser",
+    "parserOptions": {
+      "ecmaVersion": 2020,
+      "sourceType": "module"
     },
     "extends": [
-        "airbnb",
-        "prettier",
-        "plugin:node/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:vue/vue3-essential"
+      "eslint:recommended",
+      "plugin:vue/vue3-recommended",
+      "prettier",
+      "prettier/@typescript-eslint",
+      "prettier/vue"
     ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "parser": "@typescript-eslint/parser",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "prettier",
-        "@typescript-eslint",
-        "vue"
-    ],
-    "rules": {
-        "prettier/prettier": "error"
-    }
-}
+    "rules": {}
+  }
