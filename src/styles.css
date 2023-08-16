@@ -10,8 +10,41 @@
   h2 {
     @apply text-4xl text-indigo-950 font-extrabold dark:text-white
   }
+
+  h3 {
+    @apply text-3xl text-indigo-950 font-bold dark:text-white
+  }
+
+  a {
+    @apply text-xl text-indigo-950 font-bold underline decoration-2 hover:text-indigo-800
+  }
   
   p, label {
     @apply text-xl font-bold mb-3 text-indigo-950 dark:text-gray-400
+  }
+
+  .containerWindow {
+    @apply rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-blue-300 to-indigo-500
+  }
+
+  .containerWindowReverse {
+    @apply rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-indigo-500 to-blue-300 
+  }
+
+  .loginButton {
+    @apply mx-10 px-10 py-2 rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-indigo-500 to-blue-300
+    text-base font-bold text-indigo-950 hover:text-indigo-800 hover:drop-shadow-xl active:brightness-50
+  }
+
+  .loginInput {
+    @apply text-sm font-bold text-indigo-950 outline-0 p-2 bg-gradient-to-r from-sky-200 to-inherit rounded-tr-lg rounded-bl-lg
+  }
+
+  .textInput {
+    @apply text-sm font-semibold text-indigo-950 outline-0 p-2 bg-gradient-to-r from-sky-200 to-inherit rounded-tr-lg rounded-bl-lg
+  }
+
+  .dropDown {
+    @apply text-sm font-semibold text-indigo-950 outline-0 p-2 bg-gradient-to-r from-sky-200 to-inherit rounded-tr-lg
   }
 }

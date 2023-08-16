@@ -15,8 +15,7 @@ export default {
       'lg': '1rem',
       'full': '9999px',
       'large': '12px',
-    }
+    },
   },
   plugins: [],
-  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}']
 }

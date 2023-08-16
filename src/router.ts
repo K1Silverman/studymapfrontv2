@@ -1,6 +1,7 @@
 import * as VueRouter from 'vue-router';
 import HomeView from './views/HomeView.vue';
 import { createRouter, createWebHistory } from 'vue-router';
+import LoginView from './views/LoginView.vue';
 
 const routes: VueRouter.RouteRecordRaw[] = [
   {
@@ -8,6 +9,11 @@ const routes: VueRouter.RouteRecordRaw[] = [
     path: '/',
     component: HomeView,
   },
+  {
+    name: 'loginRoute',
+    path: '/login',
+    component: LoginView
+  }
 ];
 
 const router = createRouter({
