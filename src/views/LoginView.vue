@@ -12,20 +12,36 @@
         <input type="password" class="loginInput" />
       </div>
       <div>
-        <a class="underlined" href="#">Register</a><br />
+        <a class="underlined cursor-pointer" @click="toggleModal">Register now</a><br />
         <a href="#">Forgot password?</a>
       </div>
       <div class="float-right mt-5">
         <button class="loginButton">Log in</button>
       </div>
     </div>
+    <RegistrationModal :show="showModal" @closeModal="toggleModal" />
   </div>
 
 </template>
 
 <script lang="ts">
+import RegistrationModal from '../components/RegistrationModal.vue'
 
 export default {
-  name: 'LoginView',
+    name: 'LoginView',
+    components: { RegistrationModal },
+    data: function () {
+      return {
+        showModal: false,
+      }
+    },
+    methods: {
+      toggleModal: function() {
+        this.showModal = !this.showModal
+      },
+    }
 }
 </script>
+
+<style>
+</style>
