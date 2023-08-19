@@ -13,10 +13,10 @@
       </div>
       <div>
         <a class="underlined cursor-pointer" @click="toggleModal">Register now</a><br />
-        <a href="#">Forgot password?</a>
+        <a href="#">Forgot password? (not working yet)</a>
       </div>
       <div class="float-right mt-5">
-        <button class="loginButton">Log in</button>
+        <button class="windowButton">Log in</button>
       </div>
     </div>
     <RegistrationModal :show="showModal" @closeModal="toggleModal" />

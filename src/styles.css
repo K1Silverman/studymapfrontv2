@@ -31,7 +31,7 @@
     @apply rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-indigo-500 to-blue-300 
   }
 
-  .loginButton {
+  .windowButton {
     @apply mx-10 px-10 py-2 rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-indigo-500 to-blue-300
     text-base font-bold text-indigo-950 hover:text-indigo-800 hover:drop-shadow-xl active:brightness-50
   }
@@ -40,15 +40,26 @@
     @apply text-sm font-bold text-indigo-950 outline-0 p-2 bg-gradient-to-r from-sky-200 to-inherit rounded-tr-lg rounded-bl-lg
   }
 
+  .loginInputReverse {
+    @apply text-sm font-bold text-indigo-950 outline-0 p-2 bg-gradient-to-r from-inherit to-sky-200 rounded-tr-lg rounded-bl-lg
+  }
+
   .textInput {
     @apply text-sm font-semibold text-indigo-950 outline-0 p-2 bg-gradient-to-r from-sky-200 to-inherit rounded-tr-lg rounded-bl-lg
+  }
+
+  .textInputReverse {
+    @apply text-sm font-semibold text-indigo-950 outline-0 p-2 bg-gradient-to-r from-inherit to-sky-200 rounded-tr-lg rounded-bl-lg
   }
 
   .dropDown {
     @apply text-sm font-semibold text-indigo-950 outline-0 p-2 bg-gradient-to-r from-sky-200 to-inherit rounded-tr-lg
   }
 
-    /* -- Modal CSS -- */
+  
+}
+
+  /* -- Modal CSS -- */
   .modal {
     position: absolute;
     position: fixed;
@@ -57,14 +68,13 @@
     bottom: 0;
     left: 0;
     margin: auto;
+    margin-top: 7%;
     text-align: center;
-    width: fit-content;
-    height: fit-content;
-    max-width: 22em;
+    min-width: fit-content;
+    min-height: fit-content;
+    max-width: fit-content;
     padding: 2rem;
-    border-radius: 1rem;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-    background: #FFF;
     z-index: 999;
     transform: none;
   }
@@ -86,7 +96,7 @@
   /* ---------------------------------- */
   .fade-enter-active,
   .fade-leave-active {
-    transition: opacity 1s linear;
+    transition: opacity 1s ease;
   }
 
   .fade-enter-from,
@@ -106,5 +116,3 @@
   }
 
   /* -- Modal CSS end -- */
-
-}
