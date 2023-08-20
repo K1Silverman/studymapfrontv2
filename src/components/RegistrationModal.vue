@@ -61,16 +61,21 @@ export default {
       eMail: '',
       password: '',
       confirmPassword: '',
-      today: ''
+      today: '',
+      pwdValidation: {
+        password_length: 0,
+        contains_eight_characters: false,
+        contains_number: false,
+        contains_uppercase: false,
+        contains_special_character: false,
+        valid_password: false
+      }
     }
   },
   methods: {
     checkPassword: function () {
       if (this.password === this.confirmPassword) {
          
-
-
-        this.$emit('closeModal')
       }
     },
     getNow: function() {
