@@ -481,6 +481,13 @@ h2 {
   }
 }
 
+@media (min-width: 640px) {
+  h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
 h3 {
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -493,6 +500,13 @@ h3 {
   h3 {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+}
+
+@media (min-width: 640px) {
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 }
 
@@ -511,6 +525,13 @@ a:hover {
   color: rgb(55 48 163 / var(--tw-text-opacity));
 }
 
+@media (min-width: 640px) {
+  a {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
 p, label {
   margin-bottom: 0.75rem;
   font-size: 1.25rem;
@@ -524,6 +545,13 @@ p, label {
   p, label {
     --tw-text-opacity: 1;
     color: rgb(156 163 175 / var(--tw-text-opacity));
+  }
+}
+
+@media (min-width: 640px) {
+  p, label {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 }
 
@@ -647,6 +675,12 @@ p, label {
   outline-width: 0px;
 }
 
+.passwordValidationPopup {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0px;
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -759,10 +793,6 @@ p, label {
   top: 0.75rem;
 }
 
-.right-0 {
-  right: 0px;
-}
-
 .float-right {
   float: right;
 }
@@ -800,6 +830,10 @@ p, label {
   margin-left: 0.5rem;
 }
 
+.mr-0 {
+  margin-right: 0px;
+}
+
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -808,28 +842,16 @@ p, label {
   margin-right: 1.25rem;
 }
 
+.mt-0 {
+  margin-top: 0px;
+}
+
 .mt-10 {
   margin-top: 2.5rem;
 }
 
 .mt-5 {
   margin-top: 1.25rem;
-}
-
-.mr-0 {
-  margin-right: 0px;
-}
-
-.mt-0 {
-  margin-top: 0px;
-}
-
-.mr-auto {
-  margin-right: auto;
-}
-
-.ml-auto {
-  margin-left: auto;
 }
 
 .flex {
@@ -842,16 +864,6 @@ p, label {
 
 .h-full {
   height: 100%;
-}
-
-.h-max {
-  height: -moz-max-content;
-  height: max-content;
-}
-
-.h-min {
-  height: -moz-min-content;
-  height: min-content;
 }
 
 .min-h-max {
@@ -974,14 +986,14 @@ p, label {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 .font-bold {
@@ -990,6 +1002,10 @@ p, label {
 
 .font-medium {
   font-weight: 500;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 .text-indigo-950 {
@@ -1035,7 +1051,7 @@ p, label {
   bottom: 0;
   left: 0;
   margin: auto;
-  margin-top: 7%;
+  margin-top: 2.5rem;
   text-align: center;
   min-width: -moz-fit-content;
   min-width: fit-content;

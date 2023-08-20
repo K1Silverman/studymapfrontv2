@@ -7,39 +7,54 @@
       </div>
     </Transition>
     <Transition name="pop">
-      <div class="containerWindow modal" 
-           role="dialog" 
-           v-if="show"
-           >
-        <div>
-          <div class="flex">
-            <h1>Registration</h1>
-            <i class="fa-solid fa-xmark text-indigo-950 m-auto mr-0 mt-0 text-3xl cursor-pointer" @click="$emit('closeModal')"></i>
-          </div>
-          <div class="mb-5">
-            <form>
-              <h3>First name<span class="text-red-700">*</span></h3>
-              <input type="text" class="loginInputReverse" v-model="firstName" required />
-              <h3>Last name<span class="text-red-700">*</span></h3>
-              <input type="text" class="loginInputReverse" v-model="lastName" required />
-              <h3>Day of Birth<span class="text-red-700">*</span></h3>
-              <input type="date" class="loginInputReverse" v-model="dob" pattern="\d{4}-\d{2}-\d{2}" max="{{today}}" required />
-              <h3>E-mail<span class="text-red-700">*</span></h3>
-              <input type="email" class="loginInputReverse" v-model="eMail" required />
-              <h3>Password<span class="text-red-700">*</span></h3>
-              <input type="password" class="loginInputReverse" v-model="password" required />
-              <h3>Confirm password<span class="text-red-700">*</span></h3>
-              <input type="password" class="loginInputReverse" v-model="confirmPassword" required />
-              <p>Password should be more than 8 characters</p>
-              <input type="submit" @click=";" class="windowButton mr-2" value="Register" />
-              
-          <button @click="$emit('closeModal')" class="windowButton invert ml-2">Cancle</button>
-            </form>
+
+      <div>
+        <div class="containerWindow modal" 
+            role="dialog" 
+            v-if="show"
+            >
+          <div>
+            <div class="flex">
+              <h1>Registration</h1>
+              <i class="fa-solid fa-xmark text-indigo-950 m-auto mr-0 mt-0 text-3xl cursor-pointer" @click="$emit('closeModal')"></i>
+            </div>
+            <div class="mb-5">
+              <form>
+                <h3>First name<span class="text-red-700">*</span></h3>
+                <input type="text" class="loginInputReverse" v-model="firstName" required />
+                <h3>Last name<span class="text-red-700">*</span></h3>
+                <input type="text" class="loginInputReverse" v-model="lastName" required />
+                <h3>Day of Birth<span class="text-red-700">*</span></h3>
+                <input type="date" class="loginInputReverse" v-model="dob" pattern="\d{4}-\d{2}-\d{2}" max="{{today}}" required />
+                <h3>E-mail<span class="text-red-700">*</span></h3>
+                <input type="email" class="loginInputReverse" v-model="eMail" required />
+                <h3>Password<span class="text-red-700">*</span></h3>
+                <input type="password" v-on:focus="() => {pwdValidation.validating = true}"
+                v-on:focusout="() => { pwdValidation.validating = false}" class="loginInputReverse" v-model="password"
+                @input="checkPassword" autocomplete="off" required />
+                <h3>Confirm password<span class="text-red-700">*</span></h3>
+                <input type="password" v-on:focus="() => {pwdValidation.validating = true}"
+                v-on:focusout="() => { pwdValidation.validating = false}" class="loginInputReverse" v-model="confirmPassword"
+                required />
+                <div class="mt-5">
+                  <input type="submit" @click=";" class="windowButton mr-2" value="Register" /> 
+                  <button @click="$emit('closeModal')" class="windowButton invert ml-2">Cancle</button>
+                </div>
+              </form>
+            </div>
+
+    
           </div>
 
-  
         </div>
-        
+        <div v-if="pwdValidation.validating" class="passwordValidationPopup">
+          <ul>
+            <li>At least 8 characters</li>
+            <li>Contains number</li>
+            <li>Contains uppercase</li>
+            <li>Contains special character</li>
+          </ul>
+        </div>
       </div>
     </Transition>
   </div>
@@ -63,19 +78,38 @@ export default {
       confirmPassword: '',
       today: '',
       pwdValidation: {
+        validating: false,
         password_length: 0,
         contains_eight_characters: false,
         contains_number: false,
         contains_uppercase: false,
         contains_special_character: false,
+        confirm_pwd_matches: false,
         valid_password: false
       }
     }
   },
   methods: {
     checkPassword: function () {
-      if (this.password === this.confirmPassword) {
-         
+      this.pwdValidation.password_length = this.password.length;
+      const format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+      if (this.pwdValidation.password_length > 8) {
+        this.pwdValidation.contains_eight_characters = true;
+      } else {
+        this.pwdValidation.contains_eight_characters = false;
+      }
+      this.pwdValidation.contains_number = /\d/.test(this.password);
+      this.pwdValidation.contains_uppercase = /[A-Z]/.test(this.password);
+      this.pwdValidation.contains_special_character = format.test(this.password);
+      this.pwdValidation.confirm_pwd_matches = this.password === this.confirmPassword;
+      if (this.pwdValidation.contains_eight_characters &&
+          this.pwdValidation.contains_number &&
+          this.pwdValidation.contains_uppercase &&
+          this.pwdValidation.contains_special_character &&
+          this.pwdValidation.confirm_pwd_matches) {
+          this.pwdValidation.valid_password = true;
+      } else {
+        this.pwdValidation.valid_password = false;
       }
     },
     getNow: function() {
