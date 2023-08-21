@@ -555,6 +555,28 @@ p, label {
   }
 }
 
+li {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(30 27 75 / var(--tw-text-opacity));
+}
+
+@media (prefers-color-scheme: dark) {
+  li {
+    --tw-text-opacity: 1;
+    color: rgb(156 163 175 / var(--tw-text-opacity));
+  }
+}
+
+@media (min-width: 640px) {
+  li {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
 .containerWindow {
   border-top-right-radius: 1rem;
   border-bottom-left-radius: 1rem;
@@ -676,9 +698,25 @@ p, label {
 }
 
 .passwordValidationPopup {
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  --tw-gradient-from: #93c5fd var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(147 197 253 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: #6366f1 var(--tw-gradient-to-position);
   position: absolute;
-  right: 0.5rem;
-  bottom: 0px;
+  right: -75%;
+  bottom: 15%;
+  padding: 1.75rem;
+}
+
+.validPassword {
+  transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --tw-text-opacity: 0.4;
+  text-decoration-line: line-through;
+  text-decoration-color: #3730a3;
+  text-decoration-thickness: 2px
 }
 
 *, ::before, ::after {
@@ -830,20 +868,12 @@ p, label {
   margin-left: 0.5rem;
 }
 
-.mr-0 {
-  margin-right: 0px;
-}
-
 .mr-2 {
   margin-right: 0.5rem;
 }
 
 .mr-5 {
   margin-right: 1.25rem;
-}
-
-.mt-0 {
-  margin-top: 0px;
 }
 
 .mt-10 {
@@ -913,6 +943,14 @@ p, label {
   cursor: pointer;
 }
 
+.list-outside {
+  list-style-position: outside;
+}
+
+.list-disc {
+  list-style-type: disc;
+}
+
 .rounded-full {
   border-radius: 9999px;
 }
@@ -970,6 +1008,10 @@ p, label {
   padding-left: 0px;
 }
 
+.pl-3 {
+  padding-left: 0.75rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -984,11 +1026,6 @@ p, label {
 
 .font-sans {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
 }
 
 .text-base {
@@ -1044,7 +1081,6 @@ p, label {
 /* -- Modal CSS -- */
 
 .modal {
-  position: absolute;
   position: fixed;
   top: 0;
   right: 0;

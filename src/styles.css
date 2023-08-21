@@ -23,6 +23,10 @@
     @apply text-xl sm:text-lg font-bold mb-3 text-indigo-950 dark:text-gray-400
   }
 
+  li {
+    @apply text-xl sm:text-lg font-bold text-indigo-950 dark:text-gray-400
+  }
+
   .containerWindow {
     @apply rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-blue-300 to-indigo-500
   }
@@ -57,7 +61,12 @@
   }
   
   .passwordValidationPopup {
-    @apply absolute right-2 bottom-0
+    @apply absolute containerWindow -right-[75%] bottom-[15%] p-7
+  }
+
+  .validPassword {
+    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    @apply line-through decoration-indigo-800 decoration-2 text-opacity-40
   }
 
   
@@ -65,7 +74,6 @@
 
   /* -- Modal CSS -- */
   .modal {
-    position: absolute;
     position: fixed;
     top: 0;
     right: 0;
