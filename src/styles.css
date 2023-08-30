@@ -61,6 +61,7 @@
   }
   
   .passwordValidationPopup {
+    transition: opacity 0.3s linear;
     @apply absolute containerWindow -right-[75%] bottom-[15%] p-7
   }
 
@@ -128,3 +129,13 @@
   }
 
   /* -- Modal CSS end -- */
+
+  .alert-enter-active,
+  .alert-leave-active {
+    transition: opacity 0.3s linear;
+  }
+
+  .alert-enter-from,
+  .alert-leave-to {
+    opacity: 0;
+  }

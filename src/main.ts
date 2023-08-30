@@ -11,9 +11,11 @@ import VueAxios from 'vue-axios';
 
 const app = createApp(App);
 const vfm = createVfm();
+
 app.component('QuillEditor', QuillEditor);
 
 app.use(router);
 app.use(vfm);
+axios.defaults.baseURL = 'http://localhost:8080'
 app.use(VueAxios, axios);
 app.mount('#app');

@@ -698,6 +698,7 @@ li {
 }
 
 .passwordValidationPopup {
+  transition: opacity 0.3s linear;
   border-top-right-radius: 1rem;
   border-bottom-left-radius: 1rem;
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
@@ -708,7 +709,7 @@ li {
   position: absolute;
   right: -75%;
   bottom: 15%;
-  padding: 1.75rem;
+  padding: 1.75rem
 }
 
 .validPassword {
@@ -823,12 +824,32 @@ li {
   position: absolute;
 }
 
+.relative {
+  position: relative;
+}
+
+.left-5 {
+  left: 1.25rem;
+}
+
 .right-2 {
   right: 0.5rem;
 }
 
+.right-5 {
+  right: 1.25rem;
+}
+
 .top-3 {
   top: 0.75rem;
+}
+
+.left-0 {
+  left: 0px;
+}
+
+.right-0 {
+  right: 0px;
 }
 
 .float-right {
@@ -847,6 +868,10 @@ li {
   margin: auto;
 }
 
+.m-36 {
+  margin: 9rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -858,6 +883,10 @@ li {
 
 .mb-2 {
   margin-bottom: 0.5rem;
+}
+
+.mb-20 {
+  margin-bottom: 5rem;
 }
 
 .mb-5 {
@@ -880,12 +909,32 @@ li {
   margin-top: 2.5rem;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
 .mt-5 {
   margin-top: 1.25rem;
 }
 
+.mb-32 {
+  margin-bottom: 8rem;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
+}
+
+.grid {
+  display: grid;
 }
 
 .h-40 {
@@ -894,6 +943,30 @@ li {
 
 .h-full {
   height: 100%;
+}
+
+.h-60 {
+  height: 15rem;
+}
+
+.h-36 {
+  height: 9rem;
+}
+
+.h-32 {
+  height: 8rem;
+}
+
+.h-auto {
+  height: auto;
+}
+
+.h-28 {
+  height: 7rem;
+}
+
+.h-\[135px\] {
+  height: 135px;
 }
 
 .min-h-max {
@@ -912,6 +985,14 @@ li {
 .w-min {
   width: -moz-min-content;
   width: min-content;
+}
+
+.w-auto {
+  width: auto;
+}
+
+.w-\[80\%\] {
+  width: 80%;
 }
 
 .min-w-max {
@@ -995,9 +1076,19 @@ li {
   padding: 1.75rem;
 }
 
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .pb-8 {
@@ -1073,6 +1164,16 @@ li {
   opacity: 0.6;
 }
 
+.-hue-rotate-90 {
+  --tw-hue-rotate: hue-rotate(-90deg);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.-hue-rotate-60 {
+  --tw-hue-rotate: hue-rotate(-60deg);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 .invert {
   --tw-invert: invert(100%);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
@@ -1140,6 +1241,16 @@ li {
 
 /* -- Modal CSS end -- */
 
+.alert-enter-active,
+  .alert-leave-active {
+  transition: opacity 0.3s linear;
+}
+
+.alert-enter-from,
+  .alert-leave-to {
+  opacity: 0;
+}
+
 .placeholder\:text-indigo-950::-moz-placeholder {
   --tw-text-opacity: 1;
   color: rgb(30 27 75 / var(--tw-text-opacity));
@@ -1171,4 +1282,10 @@ li {
 .active\:brightness-50:active {
   --tw-brightness: brightness(.5);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+@media (min-width: 640px) {
+  .sm\:inline {
+    display: inline;
+  }
 }
