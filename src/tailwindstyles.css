@@ -481,6 +481,13 @@ h2 {
   }
 }
 
+@media (min-width: 640px) {
+  h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
 h3 {
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -493,6 +500,13 @@ h3 {
   h3 {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+}
+
+@media (min-width: 640px) {
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 }
 
@@ -511,6 +525,13 @@ a:hover {
   color: rgb(55 48 163 / var(--tw-text-opacity));
 }
 
+@media (min-width: 640px) {
+  a {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
 p, label {
   margin-bottom: 0.75rem;
   font-size: 1.25rem;
@@ -524,6 +545,35 @@ p, label {
   p, label {
     --tw-text-opacity: 1;
     color: rgb(156 163 175 / var(--tw-text-opacity));
+  }
+}
+
+@media (min-width: 640px) {
+  p, label {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
+li {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(30 27 75 / var(--tw-text-opacity));
+}
+
+@media (prefers-color-scheme: dark) {
+  li {
+    --tw-text-opacity: 1;
+    color: rgb(156 163 175 / var(--tw-text-opacity));
+  }
+}
+
+@media (min-width: 640px) {
+  li {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 }
 
@@ -647,6 +697,29 @@ p, label {
   outline-width: 0px;
 }
 
+.passwordValidationPopup {
+  transition: opacity 0.3s linear;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  --tw-gradient-from: #93c5fd var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(147 197 253 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: #6366f1 var(--tw-gradient-to-position);
+  position: absolute;
+  right: -75%;
+  bottom: 15%;
+  padding: 1.75rem
+}
+
+.validPassword {
+  transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --tw-text-opacity: 0.4;
+  text-decoration-line: line-through;
+  text-decoration-color: #3730a3;
+  text-decoration-thickness: 2px
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -751,12 +824,28 @@ p, label {
   position: absolute;
 }
 
+.relative {
+  position: relative;
+}
+
+.left-5 {
+  left: 1.25rem;
+}
+
 .right-2 {
   right: 0.5rem;
 }
 
+.right-5 {
+  right: 1.25rem;
+}
+
 .top-3 {
   top: 0.75rem;
+}
+
+.left-0 {
+  left: 0px;
 }
 
 .right-0 {
@@ -779,6 +868,10 @@ p, label {
   margin: auto;
 }
 
+.m-36 {
+  margin: 9rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -790,6 +883,10 @@ p, label {
 
 .mb-2 {
   margin-bottom: 0.5rem;
+}
+
+.mb-20 {
+  margin-bottom: 5rem;
 }
 
 .mb-5 {
@@ -812,28 +909,32 @@ p, label {
   margin-top: 2.5rem;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
 .mt-5 {
   margin-top: 1.25rem;
 }
 
-.mr-0 {
-  margin-right: 0px;
-}
-
-.mt-0 {
-  margin-top: 0px;
-}
-
-.mr-auto {
-  margin-right: auto;
+.mb-32 {
+  margin-bottom: 8rem;
 }
 
 .ml-auto {
   margin-left: auto;
 }
 
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
+}
+
+.grid {
+  display: grid;
 }
 
 .h-40 {
@@ -844,14 +945,28 @@ p, label {
   height: 100%;
 }
 
-.h-max {
-  height: -moz-max-content;
-  height: max-content;
+.h-60 {
+  height: 15rem;
 }
 
-.h-min {
-  height: -moz-min-content;
-  height: min-content;
+.h-36 {
+  height: 9rem;
+}
+
+.h-32 {
+  height: 8rem;
+}
+
+.h-auto {
+  height: auto;
+}
+
+.h-28 {
+  height: 7rem;
+}
+
+.h-\[135px\] {
+  height: 135px;
 }
 
 .min-h-max {
@@ -870,6 +985,14 @@ p, label {
 .w-min {
   width: -moz-min-content;
   width: min-content;
+}
+
+.w-auto {
+  width: auto;
+}
+
+.w-\[80\%\] {
+  width: 80%;
 }
 
 .min-w-max {
@@ -899,6 +1022,14 @@ p, label {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.list-outside {
+  list-style-position: outside;
+}
+
+.list-disc {
+  list-style-type: disc;
 }
 
 .rounded-full {
@@ -945,9 +1076,19 @@ p, label {
   padding: 1.75rem;
 }
 
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .pb-8 {
@@ -956,6 +1097,10 @@ p, label {
 
 .pl-0 {
   padding-left: 0px;
+}
+
+.pl-3 {
+  padding-left: 0.75rem;
 }
 
 .text-left {
@@ -979,17 +1124,16 @@ p, label {
   line-height: 1.5rem;
 }
 
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-
 .font-bold {
   font-weight: 700;
 }
 
 .font-medium {
   font-weight: 500;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 .text-indigo-950 {
@@ -1020,6 +1164,16 @@ p, label {
   opacity: 0.6;
 }
 
+.-hue-rotate-90 {
+  --tw-hue-rotate: hue-rotate(-90deg);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.-hue-rotate-60 {
+  --tw-hue-rotate: hue-rotate(-60deg);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 .invert {
   --tw-invert: invert(100%);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
@@ -1028,14 +1182,13 @@ p, label {
 /* -- Modal CSS -- */
 
 .modal {
-  position: absolute;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   margin: auto;
-  margin-top: 7%;
+  margin-top: 2.5rem;
   text-align: center;
   min-width: -moz-fit-content;
   min-width: fit-content;
@@ -1088,6 +1241,16 @@ p, label {
 
 /* -- Modal CSS end -- */
 
+.alert-enter-active,
+  .alert-leave-active {
+  transition: opacity 0.3s linear;
+}
+
+.alert-enter-from,
+  .alert-leave-to {
+  opacity: 0;
+}
+
 .placeholder\:text-indigo-950::-moz-placeholder {
   --tw-text-opacity: 1;
   color: rgb(30 27 75 / var(--tw-text-opacity));
@@ -1119,4 +1282,10 @@ p, label {
 .active\:brightness-50:active {
   --tw-brightness: brightness(.5);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+@media (min-width: 640px) {
+  .sm\:inline {
+    display: inline;
+  }
 }

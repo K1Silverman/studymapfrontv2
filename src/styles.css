@@ -8,19 +8,23 @@
   }
 
   h2 {
-    @apply text-4xl text-indigo-950 font-extrabold dark:text-white
+    @apply text-4xl sm:text-2xl text-indigo-950 font-extrabold dark:text-white
   }
 
   h3 {
-    @apply text-3xl text-indigo-950 font-bold dark:text-white
+    @apply text-3xl sm:text-xl text-indigo-950 font-bold dark:text-white
   }
 
   a {
-    @apply text-xl text-indigo-950 font-bold underline decoration-2 hover:text-indigo-800
+    @apply text-xl sm:text-lg text-indigo-950 font-bold underline decoration-2 hover:text-indigo-800
   }
   
   p, label {
-    @apply text-xl font-bold mb-3 text-indigo-950 dark:text-gray-400
+    @apply text-xl sm:text-lg font-bold mb-3 text-indigo-950 dark:text-gray-400
+  }
+
+  li {
+    @apply text-xl sm:text-lg font-bold text-indigo-950 dark:text-gray-400
   }
 
   .containerWindow {
@@ -55,20 +59,29 @@
   .dropDown {
     @apply text-sm font-semibold text-indigo-950 outline-0 p-2 bg-gradient-to-r from-sky-200 to-inherit rounded-tr-lg
   }
+  
+  .passwordValidationPopup {
+    transition: opacity 0.3s linear;
+    @apply absolute containerWindow -right-[75%] bottom-[15%] p-7
+  }
+
+  .validPassword {
+    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    @apply line-through decoration-indigo-800 decoration-2 text-opacity-40
+  }
 
   
 }
 
   /* -- Modal CSS -- */
   .modal {
-    position: absolute;
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     margin: auto;
-    margin-top: 7%;
+    margin-top: 2.5rem;
     text-align: center;
     min-width: fit-content;
     min-height: fit-content;
@@ -116,3 +129,13 @@
   }
 
   /* -- Modal CSS end -- */
+
+  .alert-enter-active,
+  .alert-leave-active {
+    transition: opacity 0.3s linear;
+  }
+
+  .alert-enter-from,
+  .alert-leave-to {
+    opacity: 0;
+  }
