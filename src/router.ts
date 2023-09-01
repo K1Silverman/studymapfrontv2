@@ -1,13 +1,13 @@
 import * as VueRouter from 'vue-router';
-import HomeView from './views/HomeView.vue';
+import HomePageView from './views/HomePageView.vue';
 import { createRouter, createWebHistory } from 'vue-router';
-import LoginView from './views/LoginView.vue';
+import LoginView from './components/LoginModal.vue';
 
 const routes: VueRouter.RouteRecordRaw[] = [
   {
     name: 'homeRoute',
     path: '/',
-    component: HomeView,
+    component: HomePageView,
   },
   {
     name: 'loginRoute',
