@@ -8,14 +8,15 @@ import './tailwindstyles.css'
 import { createVfm } from 'vue-final-modal'
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import { createPinia } from 'pinia';
 
 const app = createApp(App);
 const vfm = createVfm();
 
 app.component('QuillEditor', QuillEditor);
-
 app.use(router);
 app.use(vfm);
 axios.defaults.baseURL = 'http://localhost:8080'
 app.use(VueAxios, axios);
+app.use(createPinia());
 app.mount('#app');

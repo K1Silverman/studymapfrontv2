@@ -1,10 +1,9 @@
 <template>
-  <div class="flex flex-wrap flex-row-reverse justify-between">
-    <div class="text-center w-[60%] order-2">
+  <div class="flex flex-wrap justify-between px-10">
+    <div class="text-center w-[540px] mx-auto max-h-min">
       <h2>Keep all your study materials in one place.</h2>
-      <div class="containerWindow max-w-[50%] m-auto mt-12">
+      <div class="containerWindow m-auto mb-4 mt-12">
         <div class="text-center">
-          <h3>Seperate different projects to folders</h3>
           <p>
             When your notes are disorganized, finding the information you need quickly can be
             challenging, and you may waste time searching for what you need instead of studying.
@@ -14,17 +13,19 @@
         </div>
       </div>
     </div>
-    <RegistrationModal class="order-1"></RegistrationModal>
+    <div class="mx-auto">
+      <CredentialsWindow></CredentialsWindow>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import RegistrationModal from '../components/RegistrationModal.vue';
+import CredentialsWindow from '../components/CredentialsWindow.vue';
 
 export default {
   name: 'HomePageView',
   components: {
-    RegistrationModal,
+    CredentialsWindow,
   },
   methods: {},
 };

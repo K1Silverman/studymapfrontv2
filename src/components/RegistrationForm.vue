@@ -1,7 +1,26 @@
 <template>
-  <div class="flex-wrap mb-5 w-3/4 mx-auto justify-start">
-    <div class="flex flex-wrap justify-evenly">
-      <div>
+  <div class="flex-wrap mb-5">
+    <div class="h-40">
+      <h1>Sign Up!</h1>
+      <Transition name="alert">
+        <ErrorAlert
+          class="mt-2 w-[70%] min-w-min relative mx-auto text-center"
+          v-if="alert.type == 'Error'"
+          :alert-header="alert.header"
+          :alert-message="alert.message"
+          @close-error="resetAlert"
+        />
+        <SuccessAlert
+          class="mt-2 w-[70%] min-w-min relative mx-auto text-center"
+          v-else-if="alert.type == 'Success'"
+          :alert-header="alert.header"
+          :alert-message="alert.message"
+          @close-error="resetAlert"
+        />
+      </Transition>
+    </div>
+    <div class="flex flex-wrap mx-10">
+      <div class="mr-2">
         <h3>First name<span class="text-red-700">*</span></h3>
         <input
           type="text"
@@ -10,7 +29,7 @@
           v-model="registerUserInfo.firstName"
         />
       </div>
-      <div>
+      <div class="ml-2">
         <h3>Last name<span class="text-red-700">*</span></h3>
         <input
           type="text"
@@ -21,8 +40,8 @@
       </div>
     </div>
 
-    <div class="flex flex-wrap justify-evenly">
-      <div>
+    <div class="flex flex-wrap mx-10">
+      <div class="mr-2">
         <h3>E-mail<span class="text-red-700">*</span></h3>
         <input
           type="email"
@@ -34,7 +53,7 @@
           v-model="registerUserInfo.email"
         />
       </div>
-      <div>
+      <div class="ml-2">
         <h3>Confirm E-mail<span class="text-red-700">*</span></h3>
         <input
           type="email"
@@ -47,8 +66,8 @@
         />
       </div>
     </div>
-    <div class="flex flex-wrap justify-evenly">
-      <div>
+    <div class="flex flex-wrap mx-10">
+      <div class="mr-2">
         <h3>Password<span class="text-red-700">*</span></h3>
         <input
           type="password"
@@ -68,7 +87,7 @@
           autocomplete="off"
         />
       </div>
-      <div>
+      <div class="ml-2">
         <h3>Confirm password<span class="text-red-700">*</span></h3>
         <input
           type="password"
@@ -89,8 +108,8 @@
         />
       </div>
     </div>
-    <div class="flex-wrap w-2/3 mx-auto mt-3">
-      <div v-if="pwdValidation.validating" class="flex flex-wrap justify-evenly">
+    <div class="flex-wrap w-2/3 ml-12 mt-3">
+      <div class="flex flex-wrap w-[500px]">
         <ul class="list-disc list-outside text-left pl-3">
           <li v-bind:class="{ validPassword: pwdValidation.contains_eight_characters }">
             At least 8 characters
@@ -108,19 +127,30 @@
         </ul>
       </div>
     </div>
-    <div class="mt-5 w-[75%] mx-auto flex flex-wrap justify-evenly">
-      <button @click="registerUser()" class="windowButton mx-auto">Register</button>
-      <button @click="resetForm()" class="windowButton invert mx-auto">Reset</button>
+    <div class="mt-5 mb-5 flex flex-wrap mr-10">
+      <button @click="registerUser()" class="windowButton invert -hue-rotate-90 mr-2">
+        Sign up
+      </button>
+      <button @click="resetForm()" class="windowButton invert ml-2">Reset</button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import ErrorAlert from './alert/ErrorAlert.vue';
+import SuccessAlert from './alert/SuccessAlert.vue';
+
 export default {
   name: 'RegistrationForm',
   emits: ['setAlert', 'resetAlert'],
+  components: { ErrorAlert, SuccessAlert },
   data: function () {
     return {
+      alert: {
+        type: '',
+        header: '',
+        message: '',
+      },
       registerUserInfo: {
         firstName: '',
         lastName: '',
@@ -150,17 +180,16 @@ export default {
       this.checkEmail();
       this.checkNames();
       if (this.nameValid && this.emailValid && this.pwdValidation.passwordValid) {
-        console.log('User: ' + JSON.stringify(this.registerUserInfo));
         this.createUser();
       }
     },
     checkNames: function () {
       this.nameValid = false;
       if (this.registerUserInfo.firstName.length < 1) {
-        this.$emit('setAlert', 'Error', 'Check First Name!', 'You must insert first name.');
+        this.setAlert('Error', 'Check First Name!', 'You must insert first name.');
         this.nameValid = false;
       } else if (this.registerUserInfo.lastName.length < 1) {
-        this.$emit('setAlert', 'Error', 'Check Last Name!', 'You must insert last name.');
+        this.setAlert('Error', 'Check Last Name!', 'You must insert last name.');
         this.nameValid = false;
       } else {
         this.nameValid = true;
@@ -168,7 +197,7 @@ export default {
     },
     checkEmail: function () {
       if (this.registerUserInfo.email.length < 1) {
-        this.$emit('setAlert', 'Error', 'Insert e-mail address!', 'Missing e-mail address.');
+        this.setAlert('Error', 'Insert e-mail address!', 'Missing e-mail address.');
       }
     },
     validateEmail: function () {
@@ -183,8 +212,7 @@ export default {
           .then((response) => {
             console.log('Email response data: ' + response.data);
             if (response.data) {
-              this.$emit(
-                'setAlert',
+              this.setAlert(
                 'Error',
                 'E-mail address already in use!',
                 'Recover password or try different e-mail.'
@@ -194,14 +222,14 @@ export default {
             }
           });
       } else {
-        this.$emit('setAlert', 'Error', 'Invalid e-mail format!', 'Insert valid e-mail.');
+        this.setAlert('Error', 'Invalid e-mail format!', 'Insert valid e-mail.');
       }
     },
     confirmEmailMatch: function () {
       if (this.registerUserInfo.email === this.confirmEmail) {
         this.emailsMatch = true;
       } else {
-        this.$emit('setAlert', 'Error', "E-mails don't match!", 'Check e-mail addresses.');
+        this.setAlert('Error', "E-mails don't match!", 'Check e-mail addresses.');
       }
     },
     checkPassword: function () {
@@ -226,12 +254,12 @@ export default {
       ) {
         this.pwdValidation.confirm_pwd_matches = true;
       } else {
-        this.$emit('setAlert', 'Error', 'Passwords are not matching!', '');
+        this.setAlert('Error', 'Passwords are not matching!', '');
       }
     },
     validatePassword: function () {
       if (this.registerUserInfo.password.length < 1) {
-        this.$emit('setAlert', 'Error', 'Password missing!', 'Create a safe password.');
+        this.setAlert('Error', 'Password missing!', 'Create a safe password.');
       } else if (
         this.pwdValidation.contains_eight_characters &&
         this.pwdValidation.contains_number &&
@@ -243,7 +271,7 @@ export default {
           this.pwdValidation.passwordValid = true;
         }
       } else {
-        this.$emit('setAlert', 'Error', 'Password too weak!', 'Create a safe password.');
+        this.setAlert('Error', 'Password too weak!', 'Create a safe password.');
         this.pwdValidation.passwordValid = false;
       }
     },
@@ -259,21 +287,22 @@ export default {
     createUser: function () {
       this.$http.post('/user', this.registerUserInfo).then((response) => {
         if (response.status === 200) {
-          this.$emit(
-            'setAlert',
-            'Success',
-            'User created!',
-            'Login with your e-mail and password.'
-          );
+          this.setAlert('Success', 'User created!', 'Login with your e-mail and password.');
+        } else {
+          this.setAlert('Error', 'Something went wrong!', 'Probably server error.');
         }
       });
     },
-    resetAlert: function () {
-      this.$emit('resetAlert');
+    setAlert(type: string, header: string, message: string) {
+      this.alert.type = type;
+      this.alert.header = header;
+      this.alert.message = message;
     },
-    // toggleModal: function () {
-    //   this.showModal = !this.showModal;
-    // },
+    resetAlert: function () {
+      this.alert.type = '';
+      this.alert.header = '';
+      this.alert.message = '';
+    },
   },
 };
 </script>

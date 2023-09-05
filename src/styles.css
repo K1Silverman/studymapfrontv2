@@ -23,8 +23,14 @@
     @apply text-xl sm:text-lg font-bold mb-3 text-indigo-200 dark:text-gray-400 p-5 bg-sky-950 bg-opacity-20 rounded-tr-lg rounded-bl-lg w-[90%] h-auto m-auto
   }
 
+  ul {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+  }
+
   li {
-    @apply text-xl sm:text-lg font-bold text-indigo-950 dark:text-gray-400
+    @apply text-lg sm:text-base font-bold text-indigo-950 dark:text-gray-400
   }
   
   input {
@@ -41,7 +47,7 @@
 
   .windowButton {
     @apply mx-10 px-10 py-2 rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-indigo-500 to-blue-300
-    text-base font-bold text-indigo-950 hover:text-indigo-800 hover:drop-shadow-xl active:brightness-50
+    text-base font-bold text-indigo-950 hover:drop-shadow-xl active:brightness-50 hover:text-white
   }
 
   .loginInput {
@@ -104,6 +110,12 @@
     cursor: pointer;
   }
 
+
+  .transitionWindowContent {
+    opacity: 100%;
+    height: min-content
+  }
+
   /* ---------------------------------- */
   .fade-enter-active,
   .fade-leave-active {
@@ -135,5 +147,18 @@
 
   .alert-enter-from,
   .alert-leave-to {
+    opacity: 0;
+  }
+
+  .registration-enter-active {
+    transition: all 0.3s; 
+  }
+
+  .registration-leave-active {
+    transition: all 0.3s;
+  }
+
+  .registration-enter-from,
+  .registration-leave-to {
     opacity: 0;
   }

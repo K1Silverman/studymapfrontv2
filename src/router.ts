@@ -1,18 +1,22 @@
 import * as VueRouter from 'vue-router';
 import HomePageView from './views/HomePageView.vue';
 import { createRouter, createWebHistory } from 'vue-router';
-import LoginView from './components/LoginModal.vue';
+import HomeView from './views/HomeView.vue';
+import { useLoginStatusStore } from './stores/LoginStatusStore';
 
 const routes: VueRouter.RouteRecordRaw[] = [
   {
-    name: 'homeRoute',
+    name: 'homePageRoute',
     path: '/',
     component: HomePageView,
   },
   {
-    name: 'loginRoute',
-    path: '/login',
-    component: LoginView
+    name: 'homeRoute',
+    path: '/home',
+    component: HomeView,
+    meta: {
+      requiresAuth: true,
+    }
   }
 ];
 
@@ -20,5 +24,21 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+
+
+router.beforeEach((to, from, next) => {
+  const loginStatusStore = useLoginStatusStore();
+
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (!loginStatusStore.isLoggedIn) {
+      next({name: 'homePageRoute'})
+    } else {
+      next()
+    }
+  } else {
+    next();
+  }
+})
 
 export default router;
