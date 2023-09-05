@@ -4,15 +4,15 @@
 
 @layer base {
   h1 {
-    @apply mb-4 text-4xl font-extrabold leading-none tracking-tight text-indigo-950 md:text-5xl lg:text-6xl dark:text-white;
+    @apply mb-4 text-4xl lg:text-6xl md:text-5xl sm:text-2xl font-extrabold leading-none tracking-tight text-indigo-950 dark:text-white;
   }
 
   h2 {
-    @apply text-4xl sm:text-2xl text-indigo-950 font-extrabold dark:text-white
+    @apply mb-3 text-3xl lg:text-5xl md:text-4xl sm:text-xl font-extrabold text-indigo-950 dark:text-white
   }
 
   h3 {
-    @apply text-3xl sm:text-xl text-indigo-950 font-bold dark:text-white
+    @apply mb-2 text-3xl sm:text-xl text-indigo-950 font-bold dark:text-white
   }
 
   a {
@@ -20,15 +20,25 @@
   }
   
   p, label {
-    @apply text-xl sm:text-lg font-bold mb-3 text-indigo-950 dark:text-gray-400
+    @apply text-xl sm:text-lg font-bold mb-3 text-indigo-200 dark:text-gray-400 p-5 bg-sky-950 bg-opacity-20 rounded-tr-lg rounded-bl-lg w-[90%] h-auto m-auto
+  }
+
+  ul {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
   }
 
   li {
-    @apply text-xl sm:text-lg font-bold text-indigo-950 dark:text-gray-400
+    @apply text-lg sm:text-base font-bold text-indigo-950 dark:text-gray-400
+  }
+  
+  input {
+    @apply border-indigo-500 border-s-2 mb-3
   }
 
   .containerWindow {
-    @apply rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-blue-300 to-indigo-500
+    @apply rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-blue-300 to-indigo-500 p-4 m-4
   }
 
   .containerWindowReverse {
@@ -37,7 +47,7 @@
 
   .windowButton {
     @apply mx-10 px-10 py-2 rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-indigo-500 to-blue-300
-    text-base font-bold text-indigo-950 hover:text-indigo-800 hover:drop-shadow-xl active:brightness-50
+    text-base font-bold text-indigo-950 hover:drop-shadow-xl active:brightness-50 hover:text-white
   }
 
   .loginInput {
@@ -59,17 +69,11 @@
   .dropDown {
     @apply text-sm font-semibold text-indigo-950 outline-0 p-2 bg-gradient-to-r from-sky-200 to-inherit rounded-tr-lg
   }
-  
-  .passwordValidationPopup {
-    transition: opacity 0.3s linear;
-    @apply absolute containerWindow -right-[75%] bottom-[15%] p-7
-  }
 
   .validPassword {
     transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     @apply line-through decoration-indigo-800 decoration-2 text-opacity-40
   }
-
   
 }
 
@@ -106,6 +110,12 @@
     cursor: pointer;
   }
 
+
+  .transitionWindowContent {
+    opacity: 100%;
+    height: min-content
+  }
+
   /* ---------------------------------- */
   .fade-enter-active,
   .fade-leave-active {
@@ -137,5 +147,18 @@
 
   .alert-enter-from,
   .alert-leave-to {
+    opacity: 0;
+  }
+
+  .registration-enter-active {
+    transition: all 0.3s; 
+  }
+
+  .registration-leave-active {
+    transition: all 0.3s;
+  }
+
+  .registration-enter-from,
+  .registration-leave-to {
     opacity: 0;
   }
