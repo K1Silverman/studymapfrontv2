@@ -210,7 +210,6 @@ export default {
             },
           })
           .then((response) => {
-            console.log('Email response data: ' + response.data);
             if (response.data) {
               this.setAlert(
                 'Error',

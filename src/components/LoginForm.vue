@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-wrap mb-5">
+  <div class="flex-wrap mb-5" @keydown.enter="logIn()">
     <div class="flex h-[100px]">
       <h1>Log in</h1>
       <ErrorAlert
@@ -13,12 +13,12 @@
     <div class="flex flex-wrap mx-10">
       <div class="mr-2">
         <h3>E-mail</h3>
-        <input v-model="email" type="email" class="loginInputReverse" />
+        <input v-model="loginCredentials.email" type="email" class="loginInputReverse" />
       </div>
       <div class="ml-2">
         <h3>Password</h3>
         <input
-          v-model="password"
+          v-model="loginCredentials.password"
           @focusout="resetAlert()"
           type="password"
           class="loginInputReverse"
@@ -42,15 +42,16 @@
 import { useUserStore } from '../stores/UserStore';
 import { useLoginStatusStore } from '../stores/LoginStatusStore';
 import ErrorAlert from './alert/ErrorAlert.vue';
-import SuccessAlert from './alert/SuccessAlert.vue';
 
 export default {
   name: 'LoginView',
-  components: { ErrorAlert, SuccessAlert },
+  components: { ErrorAlert },
   data: function () {
     return {
-      email: '',
-      password: '',
+      loginCredentials: {
+        email: '',
+        password: '',
+      },
       alert: {
         type: '',
         header: '',
@@ -60,15 +61,13 @@ export default {
   },
   methods: {
     logIn: function () {
-      if (this.email.length < 1 || this.password.length < 1) {
+      if (this.loginCredentials.email.length < 1 || this.loginCredentials.password.length < 1) {
         this.setAlert('Error', 'Bad credentials', 'Enter E-mail address and password');
       } else {
         this.$http
-          .get('/user/login', {
-            params: {
-              email: this.email,
-              password: this.password,
-            },
+          .post('/user/login', {
+            email: this.loginCredentials.email,
+            password: this.loginCredentials.password,
           })
           .then((response) => {
             if (response.status === 200) {
@@ -80,6 +79,8 @@ export default {
                 this.userStore.role = response.data.role;
                 this.userStore.status = response.data.status;
                 this.loginStatusStore.isLoggedIn = true;
+                this.$cookie.set('sessionHash', response.data.sessionHash, { expires: null });
+                this.$cookie.set('uid', response.data.id, { expires: null });
                 this.$router.push({ name: 'homeRoute' });
               } else {
                 this.setAlert(
@@ -112,6 +113,7 @@ export default {
       this.loginStatusStore.isLogIn = false;
     },
   },
+  beforeMount() {},
   setup() {
     const loginStatusStore = useLoginStatusStore();
     const userStore = useUserStore();

@@ -20,7 +20,7 @@
   }
   
   p, label {
-    @apply text-xl sm:text-lg font-bold mb-3 text-indigo-200 dark:text-gray-400 p-5 bg-sky-950 bg-opacity-20 rounded-tr-lg rounded-bl-lg w-[90%] h-auto m-auto
+    @apply text-xl sm:text-lg font-bold text-white dark:text-gray-400 bg-opacity-20 rounded-tr-lg rounded-bl-lg
   }
 
   ul {
@@ -73,6 +73,15 @@
   .validPassword {
     transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     @apply line-through decoration-indigo-800 decoration-2 text-opacity-40
+  }
+
+  .folder { 
+    user-select: none;
+    @apply rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-blue-300 to-indigo-500 -hue-rotate-90 py-1 cursor-pointer hover:drop-shadow-xl text-center
+  }
+
+  .selectedFolder {
+    @apply invert
   }
   
 }

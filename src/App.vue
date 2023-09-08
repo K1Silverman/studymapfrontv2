@@ -7,6 +7,7 @@
           class="cursor-pointer fa-solid fa-gear right-2 mt-10 m-2 mr-0 p-auto fa-2xl text-sky-200 hover:text-sky-300"
         ></i>
         <button
+          @click="logOut()"
           class="cursor-pointer rounded-tr-lg rounded-bl-lg right-2 m-5 ml-2 px-5 p-2 font-medium bg-sky-200 hover:bg-sky-300"
         >
           Log Out
@@ -42,6 +43,7 @@ import { useLoginStatusStore } from './stores/LoginStatusStore';
 import { defineComponent } from 'vue';
 import { RouterView } from 'vue-router';
 import Folders from './components/Folders.vue';
+import { useUserStore } from './stores/UserStore';
 
 export default defineComponent({
   name: 'App',
@@ -49,12 +51,21 @@ export default defineComponent({
     return {};
   },
   components: { RouterView, Folders },
-  methods: {},
+  methods: {
+    logOut: function () {
+      this.$cookie.remove('sessionHash');
+      this.$cookie.remove('uid');
+      this.userStore.$reset();
+      window.location.reload();
+    },
+  },
   setup() {
     const loginStatusStore = useLoginStatusStore();
+    const userStore = useUserStore();
 
-    return { loginStatusStore };
+    return { loginStatusStore, userStore };
   },
+  beforeMount() {},
 });
 </script>
 
