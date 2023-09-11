@@ -2,7 +2,7 @@
   <div class="flex flex-wrap justify-between px-10">
     <div class="text-center w-[540px] mx-auto max-h-min">
       <h2>Keep all your study materials in one place.</h2>
-      <div class="containerWindow m-auto mb-4 mt-12">
+      <div class="containerWindow m-auto mb-4 mt-12 w-[540px] max-h-min">
         <div class="text-center">
           <p>
             When your notes are disorganized, finding the information you need quickly can be

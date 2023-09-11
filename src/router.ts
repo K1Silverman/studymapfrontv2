@@ -1,4 +1,5 @@
 import * as VueRouter from 'vue-router';
+import Cookies from 'js-cookie';
 import HomePageView from './views/HomePageView.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from './views/HomeView.vue';
@@ -31,7 +32,7 @@ router.beforeEach((to, from, next) => {
   const loginStatusStore = useLoginStatusStore();
 
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (!loginStatusStore.isLoggedIn) {
+    if (Cookies.get('sessionHash') === undefined) {
       next({name: 'homePageRoute'})
     } else {
       next()

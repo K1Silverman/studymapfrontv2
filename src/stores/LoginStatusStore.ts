@@ -6,6 +6,7 @@ export const useLoginStatusStore = defineStore('loginStatusStore', {
     isLoggedIn: false,
   }),
   actions: {
+
     toggleIsLogIn() {
       this.isLogIn = !this.isLogIn;
     }
