@@ -1,6 +1,6 @@
 <template>
   <div class="m-10 flex flex-grow flex-wrap">
-    <div class="sticky mr-5 min-w-[15%] max-w-[30%] min-h-max">
+    <div class="sticky mr-5 min-h-max">
       <folders></folders>
     </div>
     <div class="containerWindow mx-auto min-w-max max-w-[60%]">

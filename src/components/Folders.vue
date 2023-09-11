@@ -1,5 +1,5 @@
 <template>
-  <div class="containerWindow p-5 w-full min-w-[180px]">
+  <div class="containerWindow p-5 w-full min-w-[300px]">
     <div>
       <h2>Folders</h2>
       <div
@@ -17,14 +17,14 @@
         Here you can store <br />
         all your projects
       </p>
-      <div v-if="addNewFolder" class="w-full text-center">
-        <input
-          class="textInput -hue-rotate-90 font-bold placeholder:opacity-60 placeholder:text-indigo-950 w-full text-center"
-          type="text"
-          placeholder="New Folder"
-        />
-      </div>
-      <div class="w-full text-center">
+      <input
+        v-if="addNewFolder"
+        v-model="newFolderName"
+        class="textInput w-full -hue-rotate-90 font-bold placeholder:opacity-60 placeholder:text-indigo-950 text-center"
+        type="text"
+        placeholder="New Folder"
+      />
+      <div class="text-center">
         <div v-if="!addNewFolder">
           <i
             @click="activateAddFolderField()"
@@ -32,13 +32,14 @@
             style="color: #dfe9fb"
           ></i>
         </div>
-        <div v-else>
+        <div v-else class="w-[50%] mx-auto">
           <i
             @click="addFolder()"
             class="cursor-pointer fa-solid fa-check containerWindowReverse -hue-rotate-90 p-2 hover:drop-shadow-xl active:brightness-50 mr-2"
             style="color: #ffffff"
           ></i>
           <i
+            @click="deactivateAddFolderField()"
             class="cursor-pointer fa-solid fa-x containerWindowReverse invert p-2 hover:drop-shadow-xl active:brightness-50 ml-2"
             style=""
           ></i>
@@ -87,12 +88,21 @@ export default {
       this.newFolderName = '';
     },
     addFolder: function () {
-      this.$http.post('/content/folder', {
-        params: {
+      if (this.newFolderName === '') {
+        this.newFolderName = 'Unnamed folder';
+      }
+      this.$http
+        .post('/content/folder', {
+          id: 0,
           folderName: this.newFolderName,
+          position: 0,
+          status: '',
           userId: this.userStore.id,
-        },
-      });
+        })
+        .then((response) => {
+          this.folders = response.data;
+          this.deactivateAddFolderField();
+        });
     },
     isSelectFolder: function (folder) {
       if (folder.id === this.selectedFolderId) {

@@ -1,14 +1,16 @@
 <template>
-  <div class="flex-wrap mb-5" @keydown.enter="logIn()">
-    <div class="flex h-[100px]">
-      <h1>Log in</h1>
-      <ErrorAlert
-        class="mt-2 w-fit min-w-min relative mx-auto text-center"
-        v-if="alert.type == 'Error'"
-        :alert-header="alert.header"
-        :alert-message="alert.message"
-        @close-error="resetAlert"
-      />
+  <div class="flex-wrap mb-5 h-[280px]" @keydown.enter="logIn()" ref="container">
+    <div class="flex h-[110px]">
+      <h2>Log in</h2>
+      <Transition name="alert">
+        <ErrorAlert
+          class="mt-2 w-fit min-w-min relative mx-auto my-auto text-center"
+          v-if="alert.type == 'Error'"
+          :alert-header="alert.header"
+          :alert-message="alert.message"
+          @close-error="resetAlert"
+        />
+      </Transition>
     </div>
     <div class="flex flex-wrap mx-10">
       <div class="mr-2">
@@ -89,10 +91,14 @@ export default {
                   'This account is deactivated. Activate here.'
                 );
               }
-            } else if (response.status === 401) {
-              this.setAlert('Error', 'Wrong credentials', response.data.message);
-            } else if (response.status === 404) {
-              this.setAlert('Error', "Account doesn't exist", response.data.message);
+            }
+          })
+          .catch((error) => {
+            console.log(JSON.stringify(error.response));
+            if (error.response.data.errorCode === 'UNAUTHORIZED') {
+              this.setAlert('Error', 'Wrong credentials', error.response.data.message);
+            } else if (error.response.data.errorCode === 'NOT_FOUND') {
+              this.setAlert('Error', "Account doesn't exist", error.response.data.message);
             } else {
               this.setAlert('Error', 'Something went wrong!', '');
             }

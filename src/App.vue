@@ -1,7 +1,7 @@
 <template>
   <div class="antialiased">
     <div class="flex static w-full justify-end">
-      <h1 class="absolute top-2 right-[15%]">StudyMap</h1>
+      <h1 class="relative top-2 right-[5%]">StudyMap</h1>
       <div v-if="loginStatusStore.isLoggedIn">
         <i
           class="cursor-pointer fa-solid fa-gear right-2 mt-10 m-2 mr-0 p-auto fa-2xl text-sky-200 hover:text-sky-300"
