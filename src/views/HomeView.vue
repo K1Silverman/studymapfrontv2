@@ -1,9 +1,9 @@
 <template>
   <div class="m-10 flex flex-grow flex-wrap">
     <div class="sticky mr-5 min-h-max">
-      <folders></folders>
+      <folders @emitGetSelectedFolderIdEvent="setSelectedFolderId"></folders>
     </div>
-    <div class="containerWindow mx-auto min-w-max max-w-[60%]">
+    <div class="containerWindow mx-auto ml-[2%] h-min w-[80%] min-w-max max-w-[60%]">
       <div class="w-full mt-10 mb-10 pb-8">
         <div class="m-auto w-2/3">
           <NewPost></NewPost>
@@ -30,10 +30,57 @@ import { useLoginStatusStore } from '../stores/LoginStatusStore';
 export default {
   name: 'HomeView',
   components: { NewPost, Folders },
-  methods: {},
+  methods: {
+    setSelectedFolderId: function (folderId: Number) {
+      console.log('FolderId: ' + folderId);
+      this.selectedFolderId = folderId;
+      this.$http
+        .get('/content/folder/post', {
+          params: {
+            userId: this.userStore.id,
+            folderId: this.selectedFolderId,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+        });
+    },
+  },
   data: function () {
     return {
-      folders: [],
+      selectedFolderId: 0,
+      posts: [
+        {
+          id: 0,
+          body: '',
+          position: 1,
+          timestamp: '',
+          subject: {
+            id: 0,
+            name: '',
+            theme: {
+              id: 0,
+              name: '',
+              firstColor: '',
+              secondaryColor: '',
+              buttonsColor: '',
+              status: '',
+            },
+            status: '',
+          },
+          attachments: [
+            {
+              id: 0,
+              body: '',
+              postId: 0,
+              status: '',
+            },
+          ],
+          ownerId: 0,
+          status: '',
+          folderId: 0,
+        },
+      ],
     };
   },
   setup() {

@@ -1,5 +1,5 @@
 <template>
-  <div class="containerWindow w-[540px] max-h-min">
+  <div class="containerWindow max-h-min">
     <div class="w-full">
       <div>
         <Transition name="registration" mode="out-in">

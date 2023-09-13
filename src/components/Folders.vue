@@ -78,6 +78,7 @@ export default {
           } else {
             // TODO: võta vastu muu response kood.
           }
+          this.getSelectedFolderId();
         });
     },
     activateAddFolderField: function () {
@@ -112,6 +113,9 @@ export default {
 
     selectFolder: function (folderId) {
       this.selectedFolderId = folderId;
+    },
+    getSelectedFolderId: function () {
+      this.$emit('emitGetSelectedFolderIdEvent', this.selectedFolderId);
     },
   },
   setup() {

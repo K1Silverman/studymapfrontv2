@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-wrap mb-5 h-[280px]" @keydown.enter="logIn()" ref="container">
+  <div class="mb-5 h-[280px]" @keydown.enter="logIn()" ref="container">
     <div class="flex h-[110px]">
       <h2>Log in</h2>
       <Transition name="alert">
@@ -26,10 +26,10 @@
           class="loginInputReverse"
         />
       </div>
-      <div>
-        <a href="#" @click="loginStatusStore.toggleIsLogIn()">Register here</a><br />
-        <a href="#">Recover password (not working yet)</a>
-      </div>
+    </div>
+    <div class="mx-10 mr-2">
+      <a href="#" @click="loginStatusStore.toggleIsLogIn()">Register here</a><br />
+      <a href="#">Recover password (not working yet)</a>
     </div>
     <div class="mt-5 mb-5 flex flex-wrap mr-10">
       <button @click="logIn()" class="windowButton -hue-rotate-90 mr-2">Log in</button>
