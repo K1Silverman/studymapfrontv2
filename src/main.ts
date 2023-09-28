@@ -5,6 +5,7 @@ import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import '@vueup/vue-quill/dist/vue-quill.bubble.css';
 import './tailwindstyles.css';
+import 'vue-final-modal/style.css'
 import { createVfm } from 'vue-final-modal';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
@@ -18,8 +19,8 @@ app.config.globalProperties.$cookie = Cookies;
 
 app.component('QuillEditor', QuillEditor);
 app.use(router);
-app.use(vfm);
 axios.defaults.baseURL = 'http://localhost:8080'
+app.use(vfm);
 app.use(VueAxios, axios);
 app.use(createPinia());
 app.mount('#app');

@@ -5,10 +5,10 @@
       <div
         v-for="folder in this.folders"
         class="folder"
-        :class="{ selectedFolder: isSelectFolder(folder) }"
-        @click="selectFolder(folder.id)"
+        :class="{ selectedFolder: this.isSelectFolder(folder) }"
+        @click="this.selectFolder(folder.id)"
       >
-        <p>{{ folder.folderName }}</p>
+        <label>{{ folder.folderName }}</label>
       </div>
       <p
         v-if="this.folders.length < 2"
@@ -18,28 +18,28 @@
         all your projects
       </p>
       <input
-        v-if="addNewFolder"
-        v-model="newFolderName"
+        v-if="this.addNewFolder"
+        v-model="this.newFolderName"
         class="textInput w-full -hue-rotate-90 font-bold placeholder:opacity-60 placeholder:text-indigo-950 text-center"
         type="text"
         placeholder="New Folder"
       />
       <div class="text-center">
-        <div v-if="!addNewFolder">
+        <div v-if="!this.addNewFolder">
           <i
-            @click="activateAddFolderField()"
+            @click="this.activateAddFolderField()"
             class="cursor-pointer fa-solid fa-plus containerWindowReverse -hue-rotate-90 p-2 hover:drop-shadow-xl active:brightness-50"
             style="color: #dfe9fb"
           ></i>
         </div>
         <div v-else class="w-[50%] mx-auto">
           <i
-            @click="addFolder()"
+            @click="this.addFolder()"
             class="cursor-pointer fa-solid fa-check containerWindowReverse -hue-rotate-90 p-2 hover:drop-shadow-xl active:brightness-50 mr-2"
             style="color: #ffffff"
           ></i>
           <i
-            @click="deactivateAddFolderField()"
+            @click="this.deactivateAddFolderField()"
             class="cursor-pointer fa-solid fa-x containerWindowReverse invert p-2 hover:drop-shadow-xl active:brightness-50 ml-2"
             style=""
           ></i>
@@ -113,6 +113,7 @@ export default {
 
     selectFolder: function (folderId) {
       this.selectedFolderId = folderId;
+      this.getSelectedFolderId();
     },
     getSelectedFolderId: function () {
       this.$emit('emitGetSelectedFolderIdEvent', this.selectedFolderId);

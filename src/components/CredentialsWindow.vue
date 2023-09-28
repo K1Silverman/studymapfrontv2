@@ -3,7 +3,7 @@
     <div class="w-full">
       <div>
         <Transition name="registration" mode="out-in">
-          <RegistrationForm v-if="!formStore.isLogIn" class="transitionWindowContent" />
+          <RegistrationForm v-if="!this.formStore.isLogIn" class="transitionWindowContent" />
           <LoginForm v-else class="transitionWindowContent"></LoginForm>
         </Transition>
       </div>
