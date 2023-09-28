@@ -1,17 +1,35 @@
 <template>
   <div class="m-10 flex flex-grow flex-wrap">
     <div class="sticky mr-5 min-h-max">
-      <folders></folders>
+      <folders @emitGetSelectedFolderIdEvent="this.setSelectedFolderId"></folders>
     </div>
-    <div class="containerWindow mx-auto min-w-max max-w-[60%]">
-      <div class="w-full mt-10 mb-10 pb-8">
-        <div class="m-auto w-2/3">
-          <NewPost></NewPost>
+    <div class="grid mx-auto ml-[2%] h-min w-[80%] min-w-max max-w-[60%]">
+      <div class="containerWindow">
+        <div class="w-full mt-10 pb-8">
+          <div class="m-auto w-2/3">
+            <NewPost
+              :selected-folder-id="this.selectedFolderId"
+              :chapters="this.chapters"
+              @emitUpdateChaptersEvent="this.updateChapters"
+            ></NewPost>
+          </div>
         </div>
       </div>
-    </div>
-    <div>
-      <!-- POSTS -->
+      <div>
+        <div
+          v-if="this.chapters == undefined || this.chapters.length < 1"
+          class="containerWindow -hue-rotate-90 text-center bg-opacity-5"
+        >
+          <p class="font-bold">Be sure to create a Chapter before saving some posts</p>
+        </div>
+        <div v-else>
+          <Chapter
+            class="containerWindow"
+            v-for="chapter in this.chapters"
+            :chapter="chapter"
+          ></Chapter>
+        </div>
+      </div>
     </div>
     <div class="sticky">
       <button class="windowButton -hue-rotate-90 right-1 px-2 p-2 w-[100px] absolute">
@@ -26,15 +44,66 @@ import { useUserStore } from '../stores/UserStore';
 import Folders from '../components/Folders.vue';
 import NewPost from '../components/NewPost.vue';
 import { useLoginStatusStore } from '../stores/LoginStatusStore';
+import Chapter from '../components/Chapter.vue';
 
 export default {
   name: 'HomeView',
-  components: { NewPost, Folders },
-  methods: {},
+  components: { NewPost, Folders, Chapter },
+
   data: function () {
     return {
-      folders: [],
+      selectedFolderId: 0,
+      chapters: [
+        {
+          id: Number,
+          name: '',
+          theme: {
+            id: Number,
+            name: '',
+            firstColor: '',
+            secondaryColor: '',
+            buttonsColor: '',
+            status: '',
+          },
+          position: Number,
+          status: '',
+          folderId: Number,
+          posts: [
+            {
+              id: Number,
+              subject: '',
+              body: '',
+              position: Number,
+              timestamp: '',
+              chapterId: Number,
+              status: '',
+            },
+          ],
+        },
+      ],
     };
+  },
+  watch: {
+    selectedFolderId: function (newVal) {
+      this.$http
+        .get('/content/folder/chapter', {
+          params: {
+            userId: this.$cookie.get('uid'),
+            folderId: newVal,
+          },
+        })
+        .then((response) => {
+          this.chapters = response.data;
+        });
+    },
+  },
+  methods: {
+    setSelectedFolderId: function (folderId: Number) {
+      this.selectedFolderId = folderId;
+    },
+    updateChapters: function (chapters) {
+      this.chapters = chapters;
+    },
   },
   setup() {
     const userStore = useUserStore();
@@ -51,10 +120,10 @@ export default {
         })
         .then((response) => {
           this.userStore.id = response.data.id;
-          this.userStore.firstName = response.data.firstname;
-          this.userStore.lastName = response.data.lastname;
+          this.userStore.firstName = response.data.firstName;
+          this.userStore.lastName = response.data.lastName;
           this.userStore.email = response.data.email;
-          this.userStore.role = response.data.role;
+          this.userStore.role = response.data.roleName;
           this.userStore.status = response.data.status;
           this.loginStatusStore.isLoggedIn = true;
         });

@@ -3,24 +3,37 @@
 @tailwind utilities;
 
 @layer base {
+
+  .textColor {
+    @apply text-indigo-950 dark:text-white;
+  }
+
   h1 {
-    @apply mb-4 text-3xl lg:text-6xl md:text-5xl sm:text-4xl font-extrabold leading-none tracking-tight text-indigo-950 dark:text-white;
+    @apply mb-4 lg:text-6xl md:text-5xl sm:text-4xl font-extrabold leading-none tracking-tight textColor;
   }
 
   h2 {
-    @apply mb-3 text-2xl lg:text-5xl md:text-4xl sm:text-3xl font-extrabold text-indigo-950 dark:text-white
+    @apply mb-3 lg:text-4xl md:text-3xl sm:text-2xl font-extrabold textColor;
   }
 
   h3 {
-    @apply mb-2 text-xl lg:text-4xl md:text-3xl sm:text-2xl text-indigo-950 font-bold dark:text-white
+    @apply mb-2 lg:text-2xl md:text-xl sm:text-xl text-indigo-950 font-bold dark:text-white;
+  }
+
+  h4 {
+    @apply mb-1 lg:text-xl md:text-base sm:text-base text-indigo-950 font-bold dark:text-white;
   }
 
   a {
-    @apply text-xl sm:text-lg text-indigo-950 font-bold underline decoration-2 hover:text-indigo-800
+    @apply text-xl sm:text-lg text-indigo-950 font-bold underline decoration-2 hover:text-indigo-800;
   }
-  
-  p, label {
-    @apply text-xl sm:text-lg font-bold text-white dark:text-gray-400 bg-opacity-20 rounded-tr-lg rounded-bl-lg
+
+  p {
+    @apply textColor;
+  }
+
+  label {
+    @apply textColor font-bold;
   }
 
   ul {
@@ -30,144 +43,182 @@
   }
 
   li {
-    @apply text-lg sm:text-base font-bold text-indigo-950 dark:text-gray-400
+    @apply text-lg sm:text-base font-bold text-indigo-950 dark:text-gray-400;
   }
-  
+
   input {
-    @apply border-indigo-500 border-s-2 mb-3
+    @apply border-indigo-500 border-s-2 mb-3 px-2;
   }
 
   .containerWindow {
-    @apply rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-blue-300 to-indigo-500 p-4 m-4
+    @apply rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-blue-300 to-indigo-500 p-4 m-4;
   }
 
   .containerWindowReverse {
-    @apply rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-indigo-500 to-blue-300 
+    @apply rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-indigo-500 to-blue-300;
   }
 
   .windowButton {
-    @apply mx-10 px-10 py-2 rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-indigo-500 to-blue-300
-    text-base font-bold text-indigo-950 hover:drop-shadow-xl active:brightness-50 hover:text-white
+    @apply select-none mx-10 px-10 py-2 rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-indigo-500 to-blue-300
+    text-base font-bold text-indigo-950 hover:drop-shadow-xl active:brightness-50 hover:text-white;
+  }
+
+  .regularButton {
+    @apply select-none px-10 py-2 my-2 w-fit rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-indigo-500 to-blue-300
+    text-base font-bold text-indigo-950 hover:drop-shadow-xl active:brightness-50 hover:text-white;
   }
 
   .loginInput {
-    @apply text-sm font-bold text-indigo-950 outline-0 py-2 bg-gradient-to-r from-sky-200 to-inherit rounded-tr-lg rounded-bl-lg
+    @apply text-sm font-bold text-indigo-950 outline-0 py-2 bg-gradient-to-r from-blue-300 to-indigo-500 rounded-tr-lg rounded-bl-lg;
   }
 
   .loginInputReverse {
-    @apply text-sm font-bold text-indigo-950 outline-0 py-2 bg-gradient-to-r from-inherit to-sky-200 rounded-tr-lg rounded-bl-lg
+    @apply text-sm font-bold text-indigo-950 outline-0 py-2 bg-gradient-to-r from-indigo-500 to-blue-300 rounded-tr-lg rounded-bl-lg;
   }
 
   .textInput {
-    @apply text-sm font-semibold text-indigo-950 outline-0 p-2 bg-gradient-to-r from-sky-200 to-inherit rounded-tr-lg rounded-bl-lg
+    @apply text-sm font-semibold text-indigo-950 outline-0 p-2 bg-gradient-to-r from-blue-300 to-indigo-500 rounded-tr-lg rounded-bl-lg;
   }
 
   .textInputReverse {
-    @apply text-sm font-semibold text-indigo-950 outline-0 p-2 bg-gradient-to-r from-inherit to-sky-200 rounded-tr-lg rounded-bl-lg
-  }
-
-  .dropDown {
-    @apply text-sm font-semibold text-indigo-950 outline-0 p-2 bg-gradient-to-r from-sky-200 to-inherit rounded-tr-lg
+    @apply text-sm font-semibold text-indigo-950 outline-0 p-2 bg-gradient-to-r from-indigo-500 to-blue-300 rounded-tr-lg rounded-bl-lg;
   }
 
   .validPassword {
     transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    @apply line-through decoration-indigo-800 decoration-2 text-opacity-40
+    @apply line-through decoration-indigo-800 decoration-2 text-opacity-40;
   }
 
-  .folder { 
+  .folder {
     user-select: none;
-    @apply rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-blue-300 to-indigo-500 -hue-rotate-90 py-2 cursor-pointer hover:drop-shadow-xl text-center mb-2 w-full
+    @apply rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-blue-300 to-indigo-500 -hue-rotate-90 py-2 cursor-pointer hover:drop-shadow-xl text-center mb-2 w-full;
   }
 
   .selectedFolder {
-    @apply invert
+    @apply invert;
   }
-  
+
+  .selectedChapter {
+    @apply -hue-rotate-60;
+  }
+
+  .chapterModal {
+    @apply min-w-[400px] h-fit mt-[35%];
+  }
 }
 
-  /* -- Modal CSS -- */
-  .modal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    margin-top: 2.5rem;
-    text-align: center;
-    min-width: fit-content;
-    min-height: fit-content;
-    max-width: fit-content;
-    padding: 2rem;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-    z-index: 999;
-    transform: none;
-  }
+/* -- Modal CSS -- */
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  margin-top: 2.5rem;
+  text-align: center;
+  min-width: fit-content;
+  min-height: fit-content;
+  max-width: fit-content;
+  padding: 2rem;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  transform: none;
+}
 
-  .modal-overlay {
-    content: '';
-    position: absolute;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 998;
-    background: #2c3e50;
-    opacity: 0.6;
-    cursor: pointer;
-  }
+.modal-overlay {
+  content: '';
+  position: absolute;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 998;
+  background: #2c3e50;
+  opacity: 0.6;
+  cursor: pointer;
+}
 
+.transitionWindowContent {
+  opacity: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  height: min-content;
+}
 
-  .transitionWindowContent {
-    opacity: 100%;
-    height: min-content
-  }
+/* ---------------------------------- */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease;
+}
 
-  /* ---------------------------------- */
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity 1s ease;
-  }
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 
-  .fade-enter-from,
-  .fade-leave-to {
-    opacity: 0;
-  }
+.pop-enter-active,
+.pop-leave-active {
+  transition:
+    transform 1s cubic-bezier(0.5, 0, 0.5, 1),
+    opacity 1s linear;
+}
 
-  .pop-enter-active,
-  .pop-leave-active {
-    transition: transform 1s cubic-bezier(0.5, 0, 0.5, 1), opacity 1s linear;
-  }
+.pop-enter-from,
+.pop-leave-to {
+  opacity: 0;
+  transform: scale(0.3) translateY(-50%);
+}
 
-  .pop-enter-from,
-  .pop-leave-to {
-    opacity: 0;
-    transform: scale(0.3) translateY(-50%);
-  }
+/* -- Modal CSS end -- */
 
-  /* -- Modal CSS end -- */
+.alert-enter-active,
+.alert-leave-active {
+  transition: opacity 0.3s linear;
+}
 
-  .alert-enter-active,
-  .alert-leave-active {
-    transition: opacity 0.3s linear;
-  }
+.alert-enter-from,
+.alert-leave-to {
+  opacity: 0;
+}
 
-  .alert-enter-from,
-  .alert-leave-to {
-    opacity: 0;
-  }
+.registration-enter-active {
+  transition: all 0.3s;
+}
 
-  .registration-enter-active {
-    transition: all 0.3s; 
-  }
+.registration-leave-active {
+  transition: all 0.3s;
+}
 
-  .registration-leave-active {
-    transition: all 0.3s;
-  }
+.registration-enter-from,
+.registration-leave-to {
+  opacity: 0;
+}
 
-  .registration-enter-from,
-  .registration-leave-to {
-    opacity: 0;
-  }
+.ql-snow {
+  background-color: #c0dfff;
+}
+.ql-container.ql-snow {
+  border: 1px solid #a1bdda;
+}
+
+.ql-toolbar.ql-snow {
+  border: 1px solid #a1bdda;
+}
+
+.ql-snow .ql-stroke {
+  stroke: #1e1b4b;
+}
+
+.ql-snow .ql-picker {
+  color: #1e1b4b;
+}
+
+.ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label {
+  border-color: #a1bdda;
+}
+
+.ql-snow .ql-picker.ql-expanded .ql-picker-label {
+  color: #1e1b4b;
+}

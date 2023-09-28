@@ -5,17 +5,17 @@
       <Transition name="alert">
         <ErrorAlert
           class="mt-2 w-[70%] min-w-min relative mx-auto text-center"
-          v-if="alert.type == 'Error'"
-          :alert-header="alert.header"
-          :alert-message="alert.message"
-          @close-error="resetAlert"
+          v-if="this.alert.type == 'Error'"
+          :alert-header="this.alert.header"
+          :alert-message="this.alert.message"
+          @close-error="this.resetAlert()"
         />
         <SuccessAlert
           class="mt-2 w-[70%] min-w-min relative mx-auto text-center"
-          v-else-if="alert.type == 'Success'"
-          :alert-header="alert.header"
-          :alert-message="alert.message"
-          @close-error="resetAlert"
+          v-else-if="this.alert.type == 'Success'"
+          :alert-header="this.alert.header"
+          :alert-message="this.alert.message"
+          @close-error="this.resetAlert()"
         />
       </Transition>
     </div>
@@ -24,18 +24,18 @@
         <h3>First name<span class="text-red-700">*</span></h3>
         <input
           type="text"
-          @focusout="resetAlert()"
+          @focusout="this.resetAlert()"
           class="loginInputReverse"
-          v-model="registerUserInfo.firstName"
+          v-model="this.registerUserInfo.firstName"
         />
       </div>
       <div class="ml-2">
         <h3>Last name<span class="text-red-700">*</span></h3>
         <input
           type="text"
-          @focusout="resetAlert()"
+          @focusout="this.resetAlert()"
           class="loginInputReverse"
-          v-model="registerUserInfo.lastName"
+          v-model="this.registerUserInfo.lastName"
         />
       </div>
     </div>
@@ -46,11 +46,11 @@
         <input
           type="email"
           @focusout="
-            resetAlert();
-            validateEmail();
+            this.resetAlert();
+            this.validateEmail();
           "
           class="loginInputReverse"
-          v-model="registerUserInfo.email"
+          v-model="this.registerUserInfo.email"
         />
       </div>
       <div class="ml-2">
@@ -58,11 +58,11 @@
         <input
           type="email"
           @focusout="
-            resetAlert();
-            confirmEmailMatch();
+            this.resetAlert();
+            this.confirmEmailMatch();
           "
           class="loginInputReverse"
-          v-model="confirmEmail"
+          v-model="this.confirmEmail"
         />
       </div>
     </div>
@@ -73,17 +73,17 @@
           type="password"
           @focus="
             () => {
-              pwdValidation.validating = true;
+              this.pwdValidation.validating = true;
             }
           "
           @focusout="
             () => {
-              resetAlert();
+              this.resetAlert();
             }
           "
           class="loginInputReverse"
-          v-model="registerUserInfo.password"
-          @input="checkPassword()"
+          v-model="this.registerUserInfo.password"
+          @input="this.checkPassword()"
           autocomplete="off"
         />
       </div>
@@ -93,17 +93,17 @@
           type="password"
           @focus="
             () => {
-              pwdValidation.validating = true;
+              this.pwdValidation.validating = true;
             }
           "
           @focusout="
             () => {
-              resetAlert();
+              this.resetAlert();
             }
           "
           class="loginInputReverse"
-          v-model="pwdValidation.confirmPassword"
-          @input="checkPassword()"
+          v-model="this.pwdValidation.confirmPassword"
+          @input="this.checkPassword()"
           autocomplete="off"
         />
       </div>
@@ -111,27 +111,29 @@
     <div class="flex-wrap w-2/3 ml-12 mt-3">
       <div class="flex flex-wrap w-[500px]">
         <ul class="list-disc list-outside text-left pl-3">
-          <li v-bind:class="{ validPassword: pwdValidation.contains_eight_characters }">
+          <li v-bind:class="{ validPassword: this.pwdValidation.contains_eight_characters }">
             At least 8 characters
           </li>
-          <li v-bind:class="{ validPassword: pwdValidation.contains_number }">Contains number</li>
-          <li v-bind:class="{ validPassword: pwdValidation.contains_uppercase }">
+          <li v-bind:class="{ validPassword: this.pwdValidation.contains_number }">
+            Contains number
+          </li>
+          <li v-bind:class="{ validPassword: this.pwdValidation.contains_uppercase }">
             Contains uppercase
           </li>
-          <li v-bind:class="{ validPassword: pwdValidation.contains_special_character }">
+          <li v-bind:class="{ validPassword: this.pwdValidation.contains_special_character }">
             Contains special character
           </li>
-          <li v-bind:class="{ validPassword: pwdValidation.confirm_pwd_matches }">
+          <li v-bind:class="{ validPassword: this.pwdValidation.confirm_pwd_matches }">
             Confirm password matches
           </li>
         </ul>
       </div>
     </div>
     <div class="mt-5 mb-5 flex flex-wrap mr-10">
-      <button @click="registerUser()" class="windowButton invert -hue-rotate-90 mr-2">
+      <button @click="this.registerUser()" class="windowButton invert -hue-rotate-90 mr-2">
         Sign up
       </button>
-      <button @click="resetForm()" class="windowButton invert ml-2">Reset</button>
+      <button @click="this.resetForm()" class="windowButton invert ml-2">Reset</button>
     </div>
   </div>
 </template>

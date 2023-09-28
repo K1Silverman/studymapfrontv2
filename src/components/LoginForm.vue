@@ -1,39 +1,39 @@
 <template>
-  <div class="flex-wrap mb-5 h-[280px]" @keydown.enter="logIn()" ref="container">
+  <div class="mb-5 h-[280px]" @keydown.enter="this.logIn()" ref="container">
     <div class="flex h-[110px]">
       <h2>Log in</h2>
       <Transition name="alert">
         <ErrorAlert
           class="mt-2 w-fit min-w-min relative mx-auto my-auto text-center"
-          v-if="alert.type == 'Error'"
-          :alert-header="alert.header"
-          :alert-message="alert.message"
-          @close-error="resetAlert"
+          v-if="this.alert.type == 'Error'"
+          :alert-header="this.alert.header"
+          :alert-message="this.alert.message"
+          @close-error="this.resetAlert"
         />
       </Transition>
     </div>
     <div class="flex flex-wrap mx-10">
       <div class="mr-2">
         <h3>E-mail</h3>
-        <input v-model="loginCredentials.email" type="email" class="loginInputReverse" />
+        <input v-model="this.loginCredentials.email" type="email" class="loginInputReverse" />
       </div>
       <div class="ml-2">
         <h3>Password</h3>
         <input
-          v-model="loginCredentials.password"
-          @focusout="resetAlert()"
+          v-model="this.loginCredentials.password"
+          @focusout="this.resetAlert()"
           type="password"
           class="loginInputReverse"
         />
       </div>
-      <div>
-        <a href="#" @click="loginStatusStore.toggleIsLogIn()">Register here</a><br />
-        <a href="#">Recover password (not working yet)</a>
-      </div>
+    </div>
+    <div class="mx-10 mr-2">
+      <a href="#" @click="this.loginStatusStore.toggleIsLogIn()">Register here</a><br />
+      <a href="#">Recover password (not working yet)</a>
     </div>
     <div class="mt-5 mb-5 flex flex-wrap mr-10">
-      <button @click="logIn()" class="windowButton -hue-rotate-90 mr-2">Log in</button>
-      <button @click="goToSignUpForm()" class="windowButton invert -hue-rotate-90 ml-2">
+      <button @click="this.logIn()" class="windowButton -hue-rotate-90 mr-2">Log in</button>
+      <button @click="this.goToSignUpForm()" class="windowButton invert -hue-rotate-90 ml-2">
         Sign up
       </button>
     </div>
@@ -94,7 +94,6 @@ export default {
             }
           })
           .catch((error) => {
-            console.log(JSON.stringify(error.response));
             if (error.response.data.errorCode === 'UNAUTHORIZED') {
               this.setAlert('Error', 'Wrong credentials', error.response.data.message);
             } else if (error.response.data.errorCode === 'NOT_FOUND') {

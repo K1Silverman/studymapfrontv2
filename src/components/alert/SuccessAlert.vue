@@ -1,7 +1,7 @@
 <template>
   <div class="containerWindow w-[90%] -hue-rotate-90 px-4 py-3 absolute" role="alert">
-    <strong class="font-bold">{{ alertHeader }}</strong>
-    <span class="block sm:inline"><br />{{ alertMessage }}</span>
+    <strong class="font-bold">{{ this.alertHeader }}</strong>
+    <span class="block sm:inline"><br />{{ this.alertMessage }}</span>
   </div>
 </template>
 <script lang="ts">
