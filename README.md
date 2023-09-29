@@ -20,4 +20,4 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 ## DEV TailwindCSS
    RUN:
-      npx tailwindcss -i ./src/styles.css -o ./src/tailwindstyles.css --watch
+      yarn tailwindcss -i ./src/styles.css -o ./src/tailwindstyles.css --watch

@@ -25,10 +25,11 @@
       <div class="grid" v-else>
         <span class="font-bold">Or choose an existing one: </span>
         <button
+          v-for="chapter in chapters"
+          :key="chapter.id"
           class="windowButton m-2"
           :class="{ selectedChapter: this.isSelectedChapter(chapter.id) }"
           @click="selectChapter(chapter.id)"
-          v-for="chapter in chapters"
         >
           {{ chapter.name }}
         </button>

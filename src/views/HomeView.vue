@@ -1,16 +1,17 @@
 <template>
   <div class="m-10 flex flex-grow flex-wrap">
     <div class="sticky mr-5 min-h-max">
-      <folders @emitGetSelectedFolderIdEvent="this.setSelectedFolderId"></folders>
+      <folders @emitSelectedFolderIdEvent="this.setSelectedFolderId"></folders>
     </div>
-    <div class="grid mx-auto ml-[2%] h-min w-[80%] min-w-max max-w-[60%]">
+    <div class="grid mx-auto ml-[2%] h-min w-[80%] max-w-[60%]">
       <div class="containerWindow">
         <div class="w-full mt-10 pb-8">
-          <div class="m-auto w-2/3">
+          <div class="m-auto max-w-[70%]">
             <NewPost
               :selected-folder-id="this.selectedFolderId"
               :chapters="this.chapters"
               @emitUpdateChaptersEvent="this.updateChapters"
+              @emitPostSavedEvent="this.appendChapterPosts"
             ></NewPost>
           </div>
         </div>
@@ -24,8 +25,9 @@
         </div>
         <div v-else>
           <Chapter
+            v-for="chapter in orderedChapters"
+            :key="chapter.id"
             class="containerWindow"
-            v-for="chapter in this.chapters"
             :chapter="chapter"
           ></Chapter>
         </div>
@@ -52,7 +54,8 @@ export default {
 
   data: function () {
     return {
-      selectedFolderId: 0,
+      selectedFolderId: Number,
+      orderAsc: true,
       chapters: [
         {
           id: Number,
@@ -103,6 +106,18 @@ export default {
     },
     updateChapters: function (chapters) {
       this.chapters = chapters;
+    },
+    appendChapterPosts: function (newPost) {
+      const chapter = this.chapters.find((chapter) => chapter.id === newPost.chapterId);
+      chapter.posts.push(newPost);
+    },
+    toggleOrder: function () {
+      this.orderAsc = !this.orderAsc;
+    },
+  },
+  computed: {
+    orderedChapters() {
+      return this.chapters.slice().sort((a, b) => a.position - b.position);
     },
   },
   setup() {

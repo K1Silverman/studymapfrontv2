@@ -4,8 +4,9 @@
       <h2>Folders</h2>
       <div
         v-for="folder in this.folders"
+        :key="folder.id"
         class="folder"
-        :class="{ selectedFolder: this.isSelectFolder(folder) }"
+        :class="{ selectedFolder: this.isSelectedFolder(folder.id) }"
         @click="this.selectFolder(folder.id)"
       >
         <label>{{ folder.folderName }}</label>
@@ -60,9 +61,6 @@ export default {
       folders: [],
     };
   },
-  mounted() {
-    this.getFolders();
-  },
   methods: {
     getFolders: function () {
       this.$http
@@ -78,7 +76,11 @@ export default {
           } else {
             // TODO: võta vastu muu response kood.
           }
-          this.getSelectedFolderId();
+          if (this.$cookie.get('selectedFolderId')) {
+            this.selectedFolderId = parseInt(this.$cookie.get('selectedFolderId'));
+          }
+
+          this.emitSelectedFolderId();
         });
     },
     activateAddFolderField: function () {
@@ -105,23 +107,29 @@ export default {
           this.deactivateAddFolderField();
         });
     },
-    isSelectFolder: function (folder) {
-      if (folder.id === this.selectedFolderId) {
+    isSelectedFolder: function (folderId: Number) {
+      if (folderId === this.selectedFolderId) {
         return true;
+      } else {
+        return false;
       }
     },
 
-    selectFolder: function (folderId) {
+    selectFolder: function (folderId: Number) {
       this.selectedFolderId = folderId;
-      this.getSelectedFolderId();
+      this.$cookie.set('selectedFolderId', this.selectedFolderId);
+      this.emitSelectedFolderId();
     },
-    getSelectedFolderId: function () {
-      this.$emit('emitGetSelectedFolderIdEvent', this.selectedFolderId);
+    emitSelectedFolderId: function () {
+      this.$emit('emitSelectedFolderIdEvent', this.selectedFolderId);
     },
   },
   setup() {
     const userStore = useUserStore();
     return { userStore };
+  },
+  mounted() {
+    this.getFolders();
   },
 };
 </script>

@@ -36,18 +36,12 @@
     @apply textColor font-bold;
   }
 
-  ul {
-    columns: 2;
-    -webkit-columns: 2;
-    -moz-columns: 2;
-  }
-
   li {
     @apply text-lg sm:text-base font-bold text-indigo-950 dark:text-gray-400;
   }
 
   input {
-    @apply border-indigo-500 border-s-2 mb-3 px-2;
+    @apply border-indigo-500 border-s-2 px-2;
   }
 
   .containerWindow {
@@ -64,7 +58,7 @@
   }
 
   .regularButton {
-    @apply select-none px-10 py-2 my-2 w-fit rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-indigo-500 to-blue-300
+    @apply select-none py-2 my-2 w-fit rounded-tr-lg rounded-bl-lg bg-gradient-to-r from-indigo-500 to-blue-300
     text-base font-bold text-indigo-950 hover:drop-shadow-xl active:brightness-50 hover:text-white;
   }
 
